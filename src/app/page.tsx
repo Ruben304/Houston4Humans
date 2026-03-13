@@ -1,65 +1,59 @@
-import Image from "next/image";
+import { Users } from "lucide-react";
+import Header from "@/components/Header";
+import HeroSection from "@/components/sections/HeroSection";
+import WalkabilitySection from "@/components/sections/WalkabilitySection";
+import TransitSection from "@/components/sections/TransitSection";
+import FloodSection from "@/components/sections/FloodSection";
+import SourcesSection from "@/components/sections/SourcesSection";
+import MapWrapper from "@/components/MapWrapper";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Header />
+
+      <main>
+        {/* Hero */}
+        <HeroSection />
+
+        {/* Interactive Map */}
+        <section id="map" className="relative" style={{ height: "100svh" }}>
+          <div className="absolute inset-0">
+            <MapWrapper />
+          </div>
+          {/* Section label */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+            <div className="bg-gray-950/80 backdrop-blur border border-white/10 rounded-full px-5 py-2 text-sm text-gray-400 text-center">
+              Interactive map — toggle layers using the panel on the left
+            </div>
+          </div>
+        </section>
+
+        {/* Content sections */}
+        <WalkabilitySection />
+        <TransitSection />
+        <FloodSection />
+        <SourcesSection />
+
+        {/* Footer */}
+        <footer className="border-t border-white/8 py-12 px-6 bg-gray-950">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-sky-500 flex items-center justify-center">
+                <Users size={14} className="text-white" />
+              </div>
+              <span className="font-semibold text-white text-sm">
+                Houston<span className="text-sky-400">4Humans</span>
+              </span>
+            </div>
+            <p className="text-gray-500 text-xs text-center">
+              Data sources: Walk Score API, METRO Houston, Harris County Flood Control District,
+              FEMA FIRM Maps, Harvey Task Force Reports. For educational purposes.
+            </p>
+            <p className="text-gray-600 text-xs">© 2025</p>
+          </div>
+        </footer>
       </main>
-    </div>
+    </>
   );
 }
